@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "billtrail"
+version = "0.1.0"
+description = "Invoice extraction, arithmetic validation and an auditable review queue"
+requires-python = ">=3.11"
+dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "httpx[socks]>=0.27,<1", "pydantic>=2.9,<3", "pypdf>=5", "PyMuPDF>=1.25"]
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+[project.scripts]
+billtrail = "billtrail.cli:main"
+[tool.setuptools.packages.find]
+include = ["billtrail*"]
+[tool.setuptools.package-data]
+billtrail = ["*.sql", "*.json"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
